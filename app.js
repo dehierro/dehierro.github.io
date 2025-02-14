@@ -18,7 +18,7 @@ function initApp() {
   const volleyball = svg.append('circle')
                         .attr('cx', 400)
                         .attr('cy', 300)
-                        .attr('r', 50)
+                        .attr('r', 70)
                         .attr('fill', 'orange');
 
   // Append the name element to the volleyball element
@@ -32,7 +32,7 @@ function initApp() {
                          .attr('fill', 'white')
                          .text('Daniel Hierro');
 
-  // Animate the volleyball
+  // Animate the volleyball and text
   volleyball.transition()
             .duration(2000)
             .attr('cx', 400)
@@ -45,4 +45,17 @@ function initApp() {
                 .attr('cy', 300)
                 .ease(d3.easeBounce);
             });
+
+  nameElement.transition()
+             .duration(2000)
+             .attr('x', 400)
+             .attr('y', 100)
+             .ease(d3.easeBounce)
+             .on('end', function() {
+               d3.select(this)
+                 .transition()
+                 .duration(2000)
+                 .attr('y', 300)
+                 .ease(d3.easeBounce);
+             });
 }
