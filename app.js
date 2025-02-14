@@ -16,14 +16,14 @@ function initApp() {
 
   // Create a volleyball element
   const volleyball = svg.append('circle')
-                        .attr('cx', 50)
+                        .attr('cx', 0)
                         .attr('cy', 300)
                         .attr('r', 70)
-                        .attr('fill', 'orange');
+                        .attr('fill', 'url(https://e7.pngegg.com/pngimages/32/680/png-clipart-blue-white-and-yellow-volleyball-volleyball-net-mikasa-sports-volleyball-sport-orange-thumbnail.png)');
 
   // Append the name element to the volleyball element
   const nameElement = svg.append('text')
-                         .attr('x', 50)
+                         .attr('x', 0)
                          .attr('y', 300)
                          .attr('text-anchor', 'middle')
                          .attr('dy', '.35em')
@@ -50,7 +50,7 @@ function initApp() {
 
   // Animate the volleyball and text
   function animateBall() {
-    const bounces = simulateBounce(2000, 50, 300, window.innerWidth - 50, 100);
+    const bounces = simulateBounce(2000, 0, 300, window.innerWidth - 50, 100);
 
     let ballTransition = volleyball;
     let textTransition = nameElement;
@@ -70,14 +70,14 @@ function initApp() {
 
     ballTransition.on('end', function() {
       d3.select(this)
-        .attr('cx', 50)
+        .attr('cx', 0)
         .attr('cy', 300);
       animateBall();
     });
 
     textTransition.on('end', function() {
       d3.select(this)
-        .attr('x', 50)
+        .attr('x', 0)
         .attr('y', 300);
       animateBall();
     });
