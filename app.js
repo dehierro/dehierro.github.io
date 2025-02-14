@@ -11,7 +11,7 @@ function initApp() {
   // Create SVG container
   const svg = d3.select('#app')
                 .append('svg')
-                .attr('width', 800)
+                .attr('width', window.innerWidth)
                 .attr('height', 600);
 
   // Create a volleyball element
@@ -32,41 +32,55 @@ function initApp() {
                          .attr('fill', 'white')
                          .text('Daniel Hierro');
 
+  // Function to simulate ball bounce
+  function simulateBounce(duration, startX, startY, endX, endY) {
+    const bounceHeight = 100;
+    const bounceCount = 3;
+    const bounceDuration = duration / (bounceCount * 2);
+
+    let bounces = [];
+    for (let i = 0; i < bounceCount; i++) {
+      bounces.push({ x: startX + (endX - startX) * (i * 2 + 1) / (bounceCount * 2), y: startY - bounceHeight });
+      bounces.push({ x: startX + (endX - startX) * (i * 2 + 2) / (bounceCount * 2), y: startY });
+    }
+    bounces.push({ x: endX, y: endY });
+
+    return bounces;
+  }
+
   // Animate the volleyball and text
   function animateBall() {
-    volleyball.transition()
-              .duration(2000)
-              .attr('cx', 750)
-              .attr('cy', 100)
-              .ease(d3.easeLinear)
-              .on('end', function() {
-                d3.select(this)
-                  .attr('cx', 50)
-                  .attr('cy', 300)
-                  .transition()
-                  .duration(2000)
-                  .attr('cx', 750)
-                  .attr('cy', 100)
-                  .ease(d3.easeLinear)
-                  .on('end', animateBall);
-              });
+    const bounces = simulateBounce(2000, 50, 300, window.innerWidth - 50, 100);
 
-    nameElement.transition()
-               .duration(2000)
-               .attr('x', 750)
-               .attr('y', 100)
-               .ease(d3.easeLinear)
-               .on('end', function() {
-                 d3.select(this)
-                   .attr('x', 50)
-                   .attr('y', 300)
-                   .transition()
-                   .duration(2000)
-                   .attr('x', 750)
-                   .attr('y', 100)
-                   .ease(d3.easeLinear)
-                   .on('end', animateBall);
-               });
+    let ballTransition = volleyball;
+    let textTransition = nameElement;
+    bounces.forEach((bounce, index) => {
+      ballTransition = ballTransition.transition()
+                                     .duration(2000 / bounces.length)
+                                     .attr('cx', bounce.x)
+                                     .attr('cy', bounce.y)
+                                     .ease(d3.easeLinear);
+
+      textTransition = textTransition.transition()
+                                     .duration(2000 / bounces.length)
+                                     .attr('x', bounce.x)
+                                     .attr('y', bounce.y)
+                                     .ease(d3.easeLinear);
+    });
+
+    ballTransition.on('end', function() {
+      d3.select(this)
+        .attr('cx', 50)
+        .attr('cy', 300);
+      animateBall();
+    });
+
+    textTransition.on('end', function() {
+      d3.select(this)
+        .attr('x', 50)
+        .attr('y', 300);
+      animateBall();
+    });
   }
 
   animateBall();
