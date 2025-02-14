@@ -16,46 +16,52 @@ function initApp() {
 
   // Create a volleyball element
   const volleyball = svg.append('circle')
-                        .attr('cx', 400)
+                        .attr('cx', 50)
                         .attr('cy', 300)
                         .attr('r', 70)
                         .attr('fill', 'orange');
 
   // Append the name element to the volleyball element
   const nameElement = svg.append('text')
-                         .attr('x', 400)
+                         .attr('x', 50)
                          .attr('y', 300)
                          .attr('text-anchor', 'middle')
                          .attr('dy', '.35em')
                          .attr('font-family', 'Shadows Into Light')
-                         .attr('font-size', '48px')
+                         .attr('font-size', '24px')
                          .attr('fill', 'white')
                          .text('Daniel Hierro');
 
   // Animate the volleyball and text
-  volleyball.transition()
-            .duration(2000)
-            .attr('cx', 400)
-            .attr('cy', 100)
-            .ease(d3.easeBounce)
-            .on('end', function() {
-              d3.select(this)
-                .transition()
-                .duration(2000)
-                .attr('cy', 300)
-                .ease(d3.easeBounce);
-            });
+  function animateBall() {
+    volleyball.transition()
+              .duration(2000)
+              .attr('cx', 750)
+              .ease(d3.easeLinear)
+              .on('end', function() {
+                d3.select(this)
+                  .attr('cx', 50)
+                  .transition()
+                  .duration(2000)
+                  .attr('cx', 750)
+                  .ease(d3.easeLinear)
+                  .on('end', animateBall);
+              });
 
-  nameElement.transition()
-             .duration(2000)
-             .attr('x', 400)
-             .attr('y', 100)
-             .ease(d3.easeBounce)
-             .on('end', function() {
-               d3.select(this)
-                 .transition()
-                 .duration(2000)
-                 .attr('y', 300)
-                 .ease(d3.easeBounce);
-             });
+    nameElement.transition()
+               .duration(2000)
+               .attr('x', 750)
+               .ease(d3.easeLinear)
+               .on('end', function() {
+                 d3.select(this)
+                   .attr('x', 50)
+                   .transition()
+                   .duration(2000)
+                   .attr('x', 750)
+                   .ease(d3.easeLinear)
+                   .on('end', animateBall);
+               });
+  }
+
+  animateBall();
 }
