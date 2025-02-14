@@ -21,6 +21,17 @@ function initApp() {
                         .attr('r', 50)
                         .attr('fill', 'orange');
 
+  // Append the name element to the volleyball element
+  const nameElement = svg.append('text')
+                         .attr('x', 400)
+                         .attr('y', 300)
+                         .attr('text-anchor', 'middle')
+                         .attr('dy', '.35em')
+                         .attr('font-family', 'Shadows Into Light')
+                         .attr('font-size', '48px')
+                         .attr('fill', 'white')
+                         .text('Daniel Hierro');
+
   // Animate the volleyball
   volleyball.transition()
             .duration(2000)
