@@ -8,9 +8,6 @@ function initApp() {
   // Create an animation in the main page that includes volleyball elements
   // Placeholder for animation code
 
-  // Import d3.js
-  const d3 = require('d3');
-
   // Create SVG container
   const svg = d3.select('#app')
                 .append('svg')
