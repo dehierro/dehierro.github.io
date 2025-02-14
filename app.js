@@ -37,13 +37,16 @@ function initApp() {
     volleyball.transition()
               .duration(2000)
               .attr('cx', 750)
+              .attr('cy', 100)
               .ease(d3.easeLinear)
               .on('end', function() {
                 d3.select(this)
                   .attr('cx', 50)
+                  .attr('cy', 300)
                   .transition()
                   .duration(2000)
                   .attr('cx', 750)
+                  .attr('cy', 100)
                   .ease(d3.easeLinear)
                   .on('end', animateBall);
               });
@@ -51,13 +54,16 @@ function initApp() {
     nameElement.transition()
                .duration(2000)
                .attr('x', 750)
+               .attr('y', 100)
                .ease(d3.easeLinear)
                .on('end', function() {
                  d3.select(this)
                    .attr('x', 50)
+                   .attr('y', 300)
                    .transition()
                    .duration(2000)
                    .attr('x', 750)
+                   .attr('y', 100)
                    .ease(d3.easeLinear)
                    .on('end', animateBall);
                });
