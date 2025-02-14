@@ -24,3 +24,9 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.blackboard {
+  background-image: url('https://plus.unsplash.com/premium_photo-1675765793965-b5b4d394b51f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2tib2FyZHxlbnwwfHwwfHx8MA%3D%3D');
+  background-size: cover;
+  background-position: center;
+}
