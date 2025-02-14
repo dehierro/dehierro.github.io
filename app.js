@@ -19,7 +19,7 @@ function initApp() {
                         .attr('cx', 0)
                         .attr('cy', 300)
                         .attr('r', 70)
-                        .attr('fill', 'url(https://e7.pngegg.com/pngimages/32/680/png-clipart-blue-white-and-yellow-volleyball-volleyball-net-mikasa-sports-volleyball-sport-orange-thumbnail.png)');
+                        .attr('fill', '#FFD700');
 
   // Append the name element to the volleyball element
   const nameElement = svg.append('text')
