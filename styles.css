@@ -30,3 +30,13 @@ a:hover {
   background-size: cover;
   background-position: center;
 }
+
+#name {
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 48px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
